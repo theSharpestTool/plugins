@@ -107,6 +107,11 @@ class ImagePicker {
     );
   }
 
+  // ignore: public_member_api_docs
+  Future<PickedFile> getImageOrVideo() {
+    return platform.pickImageOrVideo();
+  }
+
   /// Returns a [File] object pointing to the video that was picked.
   ///
   /// The returned [File] is intended to be used within a single APP session. Do not save the file path and use it across sessions.
