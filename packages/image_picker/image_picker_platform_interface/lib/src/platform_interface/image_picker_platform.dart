@@ -146,6 +146,11 @@ abstract class ImagePickerPlatform extends PlatformInterface {
     throw UnimplementedError('pickImage() has not been implemented.');
   }
 
+  // ignore: public_member_api_docs
+  Future<PickedFile> pickImageOrVideo() {
+    throw UnimplementedError('pickImageOrVideo() has not been implemented.');
+  }
+
   /// Returns a [PickedFile] containing the video that was picked.
   ///
   /// The [source] argument controls where the video comes from. This can

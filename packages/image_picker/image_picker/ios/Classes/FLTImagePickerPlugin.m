@@ -126,6 +126,37 @@ static const int SOURCE_GALLERY = 1;
                                    details:nil]);
         break;
     }
+  } else ([@"pickImageOrVideo" isEqualToString:call.method]){
+    _imagePickerController = [[UIImagePickerController alloc] init];
+    _imagePickerController.modalPresentationStyle = UIModalPresentationCurrentContext;
+    _imagePickerController.delegate = self;
+    _imagePickerController.mediaTypes = @[ 
+      (NSString *)kUTTypeImage, (NSString *)kUTTypeMovie, (NSString *)kUTTypeAVIMovie, 
+      (NSString *)kUTTypeVideo, (NSString *)kUTTypeMPEG4
+    ];
+
+    self.result = result;
+    _arguments = call.arguments;
+
+    int imageSource = [[_arguments objectForKey:@"source"] intValue];
+
+    switch (imageSource) {
+      case SOURCE_CAMERA: {
+        NSInteger cameraDevice = [[_arguments objectForKey:@"cameraDevice"] intValue];
+        _device = (cameraDevice == 1) ? UIImagePickerControllerCameraDeviceFront
+                                      : UIImagePickerControllerCameraDeviceRear;
+        [self checkCameraAuthorization];
+        break;
+      }
+      case SOURCE_GALLERY:
+        [self checkPhotoAuthorization];
+        break;
+      default:
+        result([FlutterError errorWithCode:@"invalid_source"
+                                   message:@"Invalid image source."
+                                   details:nil]);
+        break;
+    }
   } else {
     result(FlutterMethodNotImplemented);
   }
