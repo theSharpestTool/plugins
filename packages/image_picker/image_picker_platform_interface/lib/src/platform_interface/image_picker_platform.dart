@@ -147,7 +147,9 @@ abstract class ImagePickerPlatform extends PlatformInterface {
   }
 
   // ignore: public_member_api_docs
-  Future<PickedFile> pickImageOrVideo() {
+  Future<PickedFile> pickImageOrVideo({
+    @required ImageSource source,
+  }) {
     throw UnimplementedError('pickImageOrVideo() has not been implemented.');
   }
 

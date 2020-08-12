@@ -103,16 +103,22 @@ class MethodChannelImagePicker extends ImagePickerPlatform {
   }
 
   @override
-  Future<PickedFile> pickImageOrVideo() async {
-    String path = await pickImageOrVideoPath();
+  Future<PickedFile> pickImageOrVideo({
+    @required ImageSource source,
+  }) async {
+    String path = await pickImageOrVideoPath(source: source);
     return path != null ? PickedFile(path) : null;
   }
 
   @override
-  Future<String> pickImageOrVideoPath() {
+  Future<String> pickImageOrVideoPath({
+    @required ImageSource source,
+  }) {
     return _channel.invokeMethod<String>(
       'pickImageOrVideo',
-      <String, dynamic>{},
+      <String, dynamic>{
+        'source': source.index,
+      },
     );
   }
 
