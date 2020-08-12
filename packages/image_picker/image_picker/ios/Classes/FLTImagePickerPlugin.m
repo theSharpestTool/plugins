@@ -126,7 +126,7 @@ static const int SOURCE_GALLERY = 1;
                                    details:nil]);
         break;
     }
-  } else ([@"pickImageOrVideo" isEqualToString:call.method]){
+  } else if ([@"pickImageOrVideo" isEqualToString:call.method]){
     _imagePickerController = [[UIImagePickerController alloc] init];
     _imagePickerController.modalPresentationStyle = UIModalPresentationCurrentContext;
     _imagePickerController.delegate = self;
