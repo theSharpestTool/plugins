@@ -108,8 +108,8 @@ class ImagePicker {
   }
 
   // ignore: public_member_api_docs
-  Future<PickedFile> getImageOrVideo() {
-    return platform.pickImageOrVideo();
+  Future<PickedFile> getImageOrVideo({@required ImageSource source,}) {
+    return platform.pickImageOrVideo(source: source);
   }
 
   /// Returns a [File] object pointing to the video that was picked.
