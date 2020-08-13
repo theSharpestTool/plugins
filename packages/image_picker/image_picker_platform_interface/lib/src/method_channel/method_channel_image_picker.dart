@@ -118,6 +118,10 @@ class MethodChannelImagePicker extends ImagePickerPlatform {
       'pickImageOrVideo',
       <String, dynamic>{
         'source': source.index,
+        'maxWidth': null,
+        'maxHeight': null,
+        'imageQuality': null,
+        'cameraDevice': CameraDevice.rear.index
       },
     );
   }
